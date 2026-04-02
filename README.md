@@ -22,8 +22,11 @@ Setup Instructions
 1️. Install Required Software
 Download and install:
 XAMPP :  https://www.apachefriends.org/
+
 MongoDB Community Server:  https://www.mongodb.com/try/download/community
+
 Redis :  https://github.com/microsoftarchive/redis/releases 
+
 Composer :  https://getcomposer.org/download/
 
 2. Start All Services
@@ -37,8 +40,11 @@ MySQL
 3️.  Setup MySQL Database
 Open in browser:
 http://localhost/phpmyadmin
+
 To access the database: http://127.0.0.1/phpmyadmin/ 
+
 Create database and table
+
 Run this SQL:
 
 CREATE DATABASE guvi;
@@ -51,18 +57,23 @@ CREATE TABLE users (
 
 4. Place Project in Correct Folder
 Move your project to:
+
 C:\xampp\htdocs\guvi-project
 
 5️. Install PHP Dependencies
+
 composer install
 
 6️. Verify MongoDB Connection 
+
 mongosh
 use guvi
 db.profiles.find()
 
 7️. Run the Application
+
 http://localhost/guvi-project/index.html
+
 How It Works
 
 Registration/Login -> MySQL
