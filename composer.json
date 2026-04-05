@@ -4,7 +4,8 @@
         "predis/predis": "^3.4",
         "php": "^8.2",
         "ext-mysqli": "*",
-        "ext-mongodb": "*"
+        "ext-mongodb": "*",
+        "ext-redis": "*"
    
     }
 }
