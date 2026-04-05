@@ -1,24 +1,22 @@
 <?php
+require_once __DIR__ . '/../vendor/autoload.php';
 
-// MySQL
-$conn = new mysqli("localhost", "root", "", "guvi");
+// --- MySQL ---
+// Railway gives you the full URL, or you can use individual vars
+$host = getenv('MYSQLHOST') ?: 'localhost';
+$user = getenv('MYSQLUSER') ?: 'root';
+$pass = getenv('MYSQLPASSWORD') ?: '';
+$name = getenv('MYSQLDATABASE') ?: 'guvi';
+$port = getenv('MYSQLPORT') ?: '3306';
 
-if ($conn->connect_error) {
-    die("MySQL Connection Failed");
-}
+$conn = new mysqli($host, $user, $pass, $name, $port);
 
-// Load Composer
-require '../vendor/autoload.php';
+// --- MongoDB ---
+$mongoUri = getenv('MONGO_URL') ?: "mongodb://localhost:27017";
+$mongo = new MongoDB\Client($mongoUri);
+$collection = $mongo->selectDatabase('guvi')->profiles;
 
-// MongoDB
-$mongo = new MongoDB\Client("mongodb://localhost:27017");
-$collection = $mongo->guvi->profiles;
-
-// Redis (Predis)
-$redis = new Predis\Client([
-    'scheme' => 'tcp',
-    'host'   => '127.0.0.1',
-    'port'   => 6379,
-]);
-
+// --- Redis (Predis) ---
+$redisUrl = getenv('REDIS_URL') ?: "tcp://127.0.0.1:6379";
+$redis = new Predis\Client($redisUrl);
 ?>
