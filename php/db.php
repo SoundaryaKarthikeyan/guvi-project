@@ -30,19 +30,17 @@ try {
 }
 
 // --- MONGODB CONNECTION ---
+// --- MONGODB CONNECTION ---
 try {
-    // Railway provides the full string including credentials in MONGODB_URL
-    $mongoUri = getenv('MONGODB_URL');
+    // Use the exact name from your Railway Variables tab
+    $mongoUri = getenv('MONGO_URL'); 
     
-    if (!$mongoUri) {
-        error_log("MongoDB URL is missing!");
-    } else {
-        $mongoClient = new MongoDB\Client($mongoUri);
-        // Use the MySQL database name for the Mongo DB name to keep it consistent
-        $mongoDb = $mongoClient->selectDatabase(getenv('MYSQLDATABASE'));
-        $profilesCollection = $mongoDb->profiles;
-    }
+    $mongoClient = new MongoDB\Client($mongoUri);
+    $mongoDb = $mongoClient->selectDatabase(getenv('MYSQLDATABASE'));
+    
+    // We name it $collection here so it matches your profile.php
+    $collection = $mongoDb->profiles; 
 } catch (Exception $e) {
-    error_log("MongoDB Connection Error: " . $e->getMessage());
+    error_log("MongoDB Error: " . $e->getMessage());
 }
 ?>
