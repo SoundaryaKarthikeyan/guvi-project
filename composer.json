@@ -1,19 +1,15 @@
 {
     "require": {
-        "mongodb/mongodb": "^1.16",
-        "predis/predis": "^3.4",
         "php": "^8.2",
-        "ext-mysqli": "*",
+        "mongodb/mongodb": "^1.16",
+        "predis/predis": "^2.2",
         "ext-mongodb": "*",
+        "ext-mysqli": "*",
         "ext-redis": "*"
-   
     },
     "config": {
-        "allow-plugins": {
-            "mongodb/mongodb": true
-        },
         "platform": {
-            "php": "8.2.0"
+            "ext-mongodb": "1.16.0"
         }
     }
 }
