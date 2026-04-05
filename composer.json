@@ -1,7 +1,7 @@
 {
     "require": {
         "php": ">=8.1",
-        "mongodb/mongodb": "^1.20",
+        "mongodb/mongodb": "^2.0",
         "predis/predis": "^2.2",
         "ext-mongodb": "*",
         "ext-mysqli": "*"
