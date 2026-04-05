@@ -1,6 +1,10 @@
 {
     "require": {
         "mongodb/mongodb": "^1.16",
-        "predis/predis": "^3.4"
+        "predis/predis": "^3.4",
+        "php": "^8.2",
+        "ext-mysqli": "*",
+        "ext-mongodb": "*"
+   
     }
 }
