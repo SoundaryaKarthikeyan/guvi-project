@@ -29,14 +29,20 @@ try {
     error_log("Redis Connection Failed: " . $e->getMessage());
 }
 
-// --- MONGODB CONNECTION (For Profiles) ---
+// --- MONGODB CONNECTION ---
 try {
-    // Railway usually provides a full MONGODB_URL
-    $mongoClient = new MongoDB\Client(getenv('MONGODB_URL'));
-    // Select the database (using your MySQL DB name as a default)
-    $mongoDb = $mongoClient->selectDatabase($dbName);
-    $profilesCollection = $mongoDb->profiles;
+    // Railway provides the full string including credentials in MONGODB_URL
+    $mongoUri = getenv('MONGODB_URL');
+    
+    if (!$mongoUri) {
+        error_log("MongoDB URL is missing!");
+    } else {
+        $mongoClient = new MongoDB\Client($mongoUri);
+        // Use the MySQL database name for the Mongo DB name to keep it consistent
+        $mongoDb = $mongoClient->selectDatabase(getenv('MYSQLDATABASE'));
+        $profilesCollection = $mongoDb->profiles;
+    }
 } catch (Exception $e) {
-    error_log("MongoDB Connection Failed: " . $e->getMessage());
+    error_log("MongoDB Connection Error: " . $e->getMessage());
 }
 ?>
